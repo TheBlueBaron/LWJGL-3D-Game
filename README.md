@@ -4,3 +4,5 @@ A basic 3D game engine using LWJGL
 Current progress is rendering a 3D cube.
 
 Next task is importing 3D models from Blender.
+
+Created using the tutorials at youtube.com/thinmatrix
