@@ -7,10 +7,10 @@ import com.rhj.lwjgl.entites.Camera;
 import com.rhj.lwjgl.entites.Light;
 import com.rhj.lwjgl.toolbox.Maths;
 
-public class StaticShader extends ShaderProgram {
+public class TerrainShader extends ShaderProgram {
 	
-	private static final String VERTEX_FILE = "src/com/rhj/lwjgl/shaders/vertexShader.vert";
-	private static final String FRAGEMENT_FILE = "src/com/rhj/lwjgl/shaders/fragmentShader.frag";
+	private static final String VERTEX_FILE = "src/com/rhj/lwjgl/shaders/terrainVertexShader.vert";
+	private static final String FRAGEMENT_FILE = "src/com/rhj/lwjgl/shaders/terrainFragmentShader.frag";
 	
 	private int locationTransformationMatrix;
 	private int locationProjectionMatrix;
@@ -19,10 +19,9 @@ public class StaticShader extends ShaderProgram {
 	private int locationLightColor;
 	private int locationShineDamper;
 	private int locationReflectivity;
-	private int locationUseFakeLighting;
 	private int locationSkyColor;
 
-	public StaticShader() {
+	public TerrainShader() {
 		super(VERTEX_FILE, FRAGEMENT_FILE);		
 	}
 
@@ -42,16 +41,11 @@ public class StaticShader extends ShaderProgram {
 		locationLightColor = super.getUniformLocation("lightColor");
 		locationShineDamper = super.getUniformLocation("shineDamper");
 		locationReflectivity = super.getUniformLocation("reflectivity");
-		locationUseFakeLighting = super.getUniformLocation("useFakeLighting");
 		locationSkyColor = super.getUniformLocation("skyColor");
 	}
 	
 	public void loadSkyColor(float r, float g, float b) {
 		super.loadVector(locationSkyColor, new Vector3f(r, g, b));
-	}
-	
-	public void loadFakeLightingVariable(boolean useFake) {
-		super.loadBoolean(locationUseFakeLighting, useFake);
 	}
 	
 	public void loadShineVariables(float damper, float reflectivity) {
