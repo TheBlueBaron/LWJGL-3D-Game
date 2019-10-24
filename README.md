@@ -1,5 +1,6 @@
 # LWJGL - 3D Game
-A basic 3D game engine using LWJGL
+A basic 3D game engine using LWJGL.
+Created using the tutorials at [YouTube - ThinMatrix](youtube.com/thinmatrix).
 
 ## Requirements
 * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
@@ -11,5 +12,3 @@ Specular lighting.
 
 #### Next Task
 Ambient lighting and optimisation.
-
-Created using the tutorials at youtube.com/thinmatrix
