@@ -2,9 +2,9 @@
 A basic 3D game engine using LWJGL
 
 ## Current Progress ##
-Importing 3D models.
+Per Pixel Lighting.
 
 ## Next Task ##
-Per pixel lighting.
+Specular Lighting.
 
 Created using the tutorials at youtube.com/thinmatrix
