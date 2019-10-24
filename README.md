@@ -9,7 +9,7 @@ Created using the tutorials at [YouTube - ThinMatrix](https://www.youtube.com/ch
 * [Slick Utils](http://slick.ninjacave.com/slick-util/)
 
 #### Current Progress
-Specular lighting.
+Flat terrain with random entity placement and fog/haze.
 
 #### Next Task
-Ambient lighting and optimisation.
+Multitexturing.
