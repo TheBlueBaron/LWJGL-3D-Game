@@ -7,9 +7,9 @@ A basic 3D game engine using LWJGL
 * [Slick Utils](http://slick.ninjacave.com/slick-util/)
 
 #### Current Progress
-Per Pixel Lighting.
+Specular lighting.
 
 #### Next Task
-Specular Lighting.
+Ambient lighting and optimisation.
 
 Created using the tutorials at youtube.com/thinmatrix
