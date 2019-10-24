@@ -8,8 +8,8 @@ import com.rhj.lwjgl.toolbox.Maths;
 
 public class StaticShader extends ShaderProgram {
 	
-	private static final String VERTEX_FILE = "src/com/rhj/lwjgl/shaders/vertexShader.txt";
-	private static final String FRAGEMENT_FILE = "src/com/rhj/lwjgl/shaders/fragmentShader.txt";
+	private static final String VERTEX_FILE = "src/com/rhj/lwjgl/shaders/vertexShader.vert";
+	private static final String FRAGEMENT_FILE = "src/com/rhj/lwjgl/shaders/fragmentShader.frag";
 	
 	private int locationTransformationMatrix;
 	private int locationProjectionMatrix;
