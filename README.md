@@ -9,7 +9,7 @@ Created using the tutorials at [YouTube - ThinMatrix](https://www.youtube.com/ch
 * [Slick Utils](http://slick.ninjacave.com/slick-util/)
 
 #### Current Progress
-Flat terrain with random entity placement and fog/haze.
+Multitexturing and player movement.
 
 #### Next Task
-Multitexturing.
+Third person camera.
