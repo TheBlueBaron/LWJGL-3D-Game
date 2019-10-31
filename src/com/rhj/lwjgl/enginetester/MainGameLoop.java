@@ -81,9 +81,9 @@ public class MainGameLoop {
 		Random rand = new Random();
 		
 		for(int i = 0; i < 150; i++) {
-			Entity e = new Entity(staticModel, new Vector3f(rand.nextFloat() * 800 - 400, 0.0f, rand.nextFloat() * 800 - 400), 0, 0, 0, 3);
+			Entity e = new Entity(staticModel, new Vector3f(rand.nextFloat() * 800 - 400, 0.0f, rand.nextFloat() * 800 - 400), 0, 0, 0, 4.0f);
 			entities.add(e);
-			e = new Entity(tree2, new Vector3f(rand.nextFloat() * 800 - 400, 0.0f, rand.nextFloat() * 800 - 400), 0, 0, 0, 0.4f);
+			e = new Entity(tree2, new Vector3f(rand.nextFloat() * 800 - 400, 0.0f, rand.nextFloat() * 800 - 400), 0, 0, 0, 0.5f);
 			entities.add(e);
 		}
 		
@@ -95,12 +95,11 @@ public class MainGameLoop {
 		}
 	
 		Light light = new Light(new Vector3f(20000.0f, 40000.0f, 20000.0f), new Vector3f(1.0f, 1.0f, 1.0f));		
-
-		Camera camera = new Camera();
 		
 		MasterRenderer renderer = new MasterRenderer();
 		
-		Player player = new Player(playerTex, new Vector3f(100.0f, 0.0f, -50.0f), 0, 0, 0, 0.4f);
+		Player player = new Player(playerTex, new Vector3f(100.0f, 0.0f, -50.0f), 0, 180.0f, 0, 0.6f);
+		Camera camera = new Camera(player);
 		
 		while(!Display.isCloseRequested()) {
 			camera.move();
