@@ -1,6 +1,7 @@
 package com.rhj.lwjgl.shaders;
 
 import org.lwjgl.util.vector.Matrix4f;
+import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
 import com.rhj.lwjgl.entites.Camera;
@@ -21,6 +22,8 @@ public class StaticShader extends ShaderProgram {
 	private int locationReflectivity;
 	private int locationUseFakeLighting;
 	private int locationSkyColor;
+	private int locationNumberOfRows;
+	private int locationOffset;
 
 	public StaticShader() {
 		super(VERTEX_FILE, FRAGEMENT_FILE);		
@@ -44,6 +47,16 @@ public class StaticShader extends ShaderProgram {
 		locationReflectivity = super.getUniformLocation("reflectivity");
 		locationUseFakeLighting = super.getUniformLocation("useFakeLighting");
 		locationSkyColor = super.getUniformLocation("skyColor");
+		locationNumberOfRows = super.getUniformLocation("numberOfRows");
+		locationOffset = super.getUniformLocation("offset");
+	}
+	
+	public void loadNumberOfRows(int numberOfRows) {
+		super.loadInt(locationNumberOfRows, numberOfRows);
+	}
+	
+	public void loadOffset(float x, float y) {
+		super.load2DVector(locationOffset, new Vector2f(x, y));
 	}
 	
 	public void loadSkyColor(float r, float g, float b) {
