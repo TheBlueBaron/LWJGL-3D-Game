@@ -9,7 +9,7 @@ Created using the tutorials at [YouTube - ThinMatrix](https://www.youtube.com/ch
 * [Slick Utils](http://slick.ninjacave.com/slick-util/)
 
 #### Current Progress
-Heightmaps, terrain collision and texture atlases.
+GUI Textures and point lighting.
 
 #### Next Task
-GUI.
+Skybox.
