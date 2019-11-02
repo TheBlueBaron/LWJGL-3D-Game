@@ -5,12 +5,15 @@ import java.util.List;
 import java.util.Random;
 
 import org.lwjgl.opengl.Display;
+import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
 import com.rhj.lwjgl.entites.Camera;
 import com.rhj.lwjgl.entites.Entity;
 import com.rhj.lwjgl.entites.Light;
 import com.rhj.lwjgl.entites.Player;
+import com.rhj.lwjgl.guis.GuiRenderer;
+import com.rhj.lwjgl.guis.GuiTexture;
 import com.rhj.lwjgl.models.RawModel;
 import com.rhj.lwjgl.models.TexturedModel;
 import com.rhj.lwjgl.objconverter.ModelData;
@@ -47,6 +50,7 @@ public class MainGameLoop {
 		ModelData tree2Data = OBJFileLoader.loadOBJ("lowPolyTree");
 		ModelData grassData = OBJFileLoader.loadOBJ("grassModel");
 		ModelData fernData = OBJFileLoader.loadOBJ("fern");
+		ModelData lampData = OBJFileLoader.loadOBJ("lamp");
 		
 		RawModel treeModel = loader.loadToVAO(treeData.getVertices(), treeData.getTextureCoords(), treeData.getNormals(), treeData.getIndices());
 		TexturedModel staticModel = new TexturedModel(treeModel, new ModelTexture(loader.loadTexture("tree")));
@@ -64,6 +68,10 @@ public class MainGameLoop {
 		TexturedModel fern = new TexturedModel(fernModel, new ModelTexture(loader.loadTexture("fern")));		
 		fern.getTexture().setHasTransparancy(true);
 		fern.getTexture().setNumberOfRows(2);
+		
+		RawModel lampModel = loader.loadToVAO(lampData.getVertices(), lampData.getTextureCoords(), lampData.getNormals(), lampData.getIndices());
+		TexturedModel lamp = new TexturedModel(lampModel, new ModelTexture(loader.loadTexture("lamp")));
+		lamp.getTexture().setUseFakeLighting(true);
 
 		ModelTexture texture = staticModel.getTexture();
 		texture.setShineDamper(50.0f);
@@ -105,12 +113,26 @@ public class MainGameLoop {
 			entities.add(e);
 		}
 	
-		Light light = new Light(new Vector3f(20000.0f, 40000.0f, 20000.0f), new Vector3f(1.0f, 1.0f, 1.0f));		
+		List<Light> lights = new ArrayList<Light>();
+		lights.add(new Light(new Vector3f(0.0f, 10000.0f, -7000.0f), new Vector3f(0.1f, 0.1f, 0.1f)));
+		lights.add(new Light(new Vector3f(0.0f, terrain.getHeightOfTerrain(0.0f, -100.0f) + 12.5f, -100.0f), new Vector3f(2.0f, 0.0f, 0.0f), new Vector3f(1.0f, 0.01f, 0.002f)));
+		lights.add(new Light(new Vector3f(100.0f, terrain.getHeightOfTerrain(100.0f, -110.0f) + 12.5f, -110.0f), new Vector3f(0.0f, 2.0f, 0.0f), new Vector3f(1.0f, 0.01f, 0.002f)));
+		lights.add(new Light(new Vector3f(0.0f, terrain.getHeightOfTerrain(0.0f, 30.0f) + 12.5f, 30.0f), new Vector3f(0.0f, 1.5f, 2.0f), new Vector3f(1.0f, 0.01f, 0.002f)));
+		
+		entities.add(new Entity(lamp, new Vector3f(0.0f, terrain.getHeightOfTerrain(0.0f, -100.0f), -100.0f), 0, 0, 0, 1));
+		entities.add(new Entity(lamp, new Vector3f(100.0f, terrain.getHeightOfTerrain(100.0f, -110.0f), -110.0f), 0, 0, 0, 1));
+		entities.add(new Entity(lamp, new Vector3f(0.0f, terrain.getHeightOfTerrain(0.0f, 30.0f), 30.0f), 0, 0, 0, 1));
 		
 		MasterRenderer renderer = new MasterRenderer();
 		
-		Player player = new Player(playerTex, new Vector3f(100.0f, 0.0f, -50.0f), 0, 180.0f, 0, 0.6f);
+		Player player = new Player(playerTex, new Vector3f(0.0f, 0.0f, -80.0f), 0, 180.0f, 0, 0.6f);
 		Camera camera = new Camera(player);
+		
+		List<GuiTexture> guis = new ArrayList<GuiTexture>();
+		GuiTexture gui = new GuiTexture(loader.loadTexture("healthBar"), new Vector2f(-0.85f, 0.95f), new Vector2f(0.15f, 0.15f));
+		guis.add(gui);
+		
+		GuiRenderer guiRenderer = new GuiRenderer(loader);
 		
 		while(!Display.isCloseRequested()) {
 			camera.move();
@@ -120,10 +142,12 @@ public class MainGameLoop {
 				renderer.processEntity(e);			
 			}
 			renderer.processTerrain(terrain);
-			renderer.render(light, camera);
+			renderer.render(lights, camera);
+			guiRenderer.render(guis);
 			DisplayManager.updateDisplay();
 		}
 		
+		guiRenderer.cleanUp();
 		renderer.cleanUp();
 		loader.cleanUp();
 		DisplayManager.closeDisplay();
