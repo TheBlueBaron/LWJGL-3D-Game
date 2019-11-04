@@ -19,7 +19,7 @@ public class GuiRenderer {
 	
 	public GuiRenderer(Loader loader) {
 		float[] positions = { -1.0f, 1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -1.0f };
-		quad = loader.loadToVAO(positions);
+		quad = loader.loadToVAO(positions, 2);
 		shader = new GuiShader();
 	}
 	

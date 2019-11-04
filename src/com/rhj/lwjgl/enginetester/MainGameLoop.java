@@ -123,7 +123,7 @@ public class MainGameLoop {
 		entities.add(new Entity(lamp, new Vector3f(100.0f, terrain.getHeightOfTerrain(100.0f, -110.0f), -110.0f), 0, 0, 0, 1));
 		entities.add(new Entity(lamp, new Vector3f(0.0f, terrain.getHeightOfTerrain(0.0f, 30.0f), 30.0f), 0, 0, 0, 1));
 		
-		MasterRenderer renderer = new MasterRenderer();
+		MasterRenderer renderer = new MasterRenderer(loader);
 		
 		Player player = new Player(playerTex, new Vector3f(0.0f, 0.0f, -80.0f), 0, 180.0f, 0, 0.6f);
 		Camera camera = new Camera(player);
