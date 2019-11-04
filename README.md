@@ -9,7 +9,7 @@ Created using the tutorials at [YouTube - ThinMatrix](https://www.youtube.com/ch
 * [Slick Utils](http://slick.ninjacave.com/slick-util/)
 
 #### Current Progress
-GUI Textures and point lighting.
+Skybox.
 
 #### Next Task
-Skybox.
+Day / Night cycle.
