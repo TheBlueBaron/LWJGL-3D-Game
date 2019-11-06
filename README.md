@@ -10,7 +10,7 @@ Created using the tutorials at [YouTube - ThinMatrix](https://www.youtube.com/ch
 * [PNGDecoder](https://anonymousfiles.io/gl8s5MKo/)
 
 #### Current Progress
-Skybox.
+Day / Night cycle.
 
 #### Next Task
-Day / Night cycle.
+Mouse picking.
