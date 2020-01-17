@@ -1,6 +1,6 @@
 #version 400 core
 
-const int maxLights = 4;
+const int maxLights = 10;
 
 in vec3 position;
 in vec2 textureCoords;
@@ -20,9 +20,14 @@ uniform vec3 lightPosition[maxLights];
 const float density = 0.0035;
 const float gradient = 5.0;
 
+uniform vec4 plane;
+
 void main(void) {
 
 	vec4 worldPosition = transformationMatrix * vec4(position, 1.0);
+	
+	gl_ClipDistance[0] = dot(worldPosition, plane);
+	
 	vec4 positionRelativeToCam = viewMatrix * worldPosition;
 	gl_Position = projectionMatrix * positionRelativeToCam;
 	passTextureCoords = textureCoords;

@@ -1,6 +1,6 @@
 #version 400 core
 
-const int maxLights = 4;
+const int maxLights = 10;
 
 in vec2 passTextureCoords;
 in vec3 surfaceNormal;
